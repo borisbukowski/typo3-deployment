@@ -1,0 +1,11 @@
+default:
+  cache:
+    key: composer-cache-for-all
+    paths:
+      - .composer-cache/
+      - .yarn-cache/
+  before_script:
+    - composer config -g cache-dir "$(pwd)/.composer-cache"
+    - composer config http-basic.typo3-satis.louis.info ${TYPO3_SATIS_USER} ${TYPO3_SATIS_PASSWORD}
+    - composer config gitlab-token.gitlab.louis-net.de ${CI_JOB_TOKEN}
+    - yarn config set cache-folder "$(pwd)/.yarn-cache"
